@@ -1,0 +1,735 @@
+/* ==========================================================================
+   ПесокРамонь — лендинг спецтехники
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --main-dark: #1e2229;
+  --accent-orange: #ff9900;
+  --accent-hover: #e08800;
+  --bg-light: #A9A9A9;
+  --white: #ffffff;
+
+  --text-muted: #1e2229;
+  --shadow-card: 0 4px 24px rgba(30, 34, 41, 0.08);
+  --shadow-card-hover: 0 8px 32px rgba(30, 34, 41, 0.14);
+  --radius-btn: 6px;
+  --radius-card: 12px;
+  --header-height: 72px;
+  --container-width: 1200px;
+  --transition: 0.25s ease;
+  --font-family: 'Inter', system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--main-dark);
+  background-color: var(--white);
+  padding-top: var(--header-height);
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section-title {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 700;
+  color: var(--main-dark);
+  text-align: center;
+  margin-bottom: 2.5rem;
+  letter-spacing: -0.02em;
+}
+
+.section-title--light {
+  color: var(--white);
+}
+
+/* --------------------------------------------------------------------------
+   Кнопки
+   -------------------------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 28px;
+  font-family: var(--font-family);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  border: none;
+  border-radius: var(--radius-btn);
+  cursor: pointer;
+  transition:
+    background-color var(--transition),
+    color var(--transition),
+    border-color var(--transition),
+    box-shadow var(--transition),
+    transform var(--transition);
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn--primary {
+  background-color: var(--accent-orange);
+  color: var(--white);
+  box-shadow: 0 4px 14px rgba(255, 153, 0, 0.35);
+}
+
+.btn--primary:hover {
+  background-color: var(--accent-hover);
+  box-shadow: 0 6px 20px rgba(255, 153, 0, 0.45);
+}
+
+.btn--secondary {
+  background-color: transparent;
+  color: var(--accent-orange);
+  border: 2px solid var(--accent-orange);
+}
+
+.btn--secondary:hover {
+  background-color: var(--accent-orange);
+  color: var(--white);
+}
+
+.btn--large {
+  min-height: 52px;
+  padding: 16px 32px;
+  font-size: 1.05rem;
+}
+
+/* --------------------------------------------------------------------------
+   Header — фиксированный glassmorphism
+   -------------------------------------------------------------------------- */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.header--glass {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 1px 0 rgba(30, 34, 41, 0.06);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: var(--header-height);
+  padding: 12px 0;
+}
+
+.header__logo {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--accent-orange);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color var(--transition);
+}
+
+.header__logo:hover {
+  color: var(--accent-hover);
+}
+
+.header__contacts {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.header__phone {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--main-dark);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.header__phone:hover {
+  color: var(--accent-orange);
+}
+
+.header__schedule {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.header__callback {
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Hero
+   -------------------------------------------------------------------------- */
+
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: clamp(72px, 10vw, 120px) 0;
+  text-align: center;
+  color: var(--white);
+  background:
+    linear-gradient(rgba(30, 34, 41, 0.62), rgba(30, 34, 41, 0.72)),
+    url('images/fon1.webp') center center / cover no-repeat;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+.hero__title {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.25;
+  max-width: 920px;
+  margin: 0 auto 2rem;
+  letter-spacing: -0.02em;
+}
+
+/* --------------------------------------------------------------------------
+   Услуги — CSS Grid
+   -------------------------------------------------------------------------- */
+
+.services {
+  padding: clamp(64px, 8vw, 96px) 0;
+  background-color: var(--bg-light);
+}
+
+.services__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.service-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--white);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition:
+    box-shadow var(--transition),
+    transform var(--transition);
+}
+
+.service-card:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-4px);
+}
+
+.service-card__image {
+  height: 180px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, #e8ecf1 0%, #d5dbe3 100%);
+}
+
+.service-card__body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 8px;
+  padding: 24px;
+}
+
+.service-card__title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--main-dark);
+}
+
+.service-card__desc {
+  flex-grow: 1;
+  margin-bottom: 8px;
+  color: var(--text-muted);
+}
+
+.service-card__btn {
+  align-self: flex-start;
+}
+
+.service-card_image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+/* --------------------------------------------------------------------------
+   Автопарк — CSS Grid
+   -------------------------------------------------------------------------- */
+
+.fleet {
+  padding: clamp(64px, 8vw, 96px) 0;
+  background-color: var(--bg-light);
+}
+
+.fleet__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+.fleet-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--white);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition:
+    box-shadow var(--transition),
+    transform var(--transition);
+}
+
+.fleet-card:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-4px);
+}
+
+.fleet-card__image {
+  height: 300px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, #e8ecf1 0%, #d5dbe3 100%);
+}
+
+.fleet-card__body {
+  padding: 28px;
+}
+
+.fleet-card__title {
+  margin-bottom: 16px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--main-dark);
+}
+
+.fleet-card__specs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style: none;
+}
+
+.fleet-card__specs li {
+  position: relative;
+  padding-left: 22px;
+  color: var(--text-muted);
+}
+
+.fleet-card__specs li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+  color: var(--accent-orange);
+}
+
+.placeholder {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #9ca3af;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* --------------------------------------------------------------------------
+   Преимущества — CSS Grid
+   -------------------------------------------------------------------------- */
+
+.advantages {
+  padding: clamp(64px, 8vw, 96px) 0;
+  background-color: var(--bg-light);
+}
+
+.advantages__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.advantage-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: clamp(24px, 4vw, 32px);
+  background-color: var(--white);
+  border: 1px solid rgba(30, 34, 41, 0.08);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  transition:
+    box-shadow var(--transition),
+    transform var(--transition),
+    border-color var(--transition);
+}
+
+.advantage-card:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-4px);
+  border-color: rgba(255, 153, 0, 0.25);
+}
+
+.advantage-card__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  background: linear-gradient(145deg, rgba(255, 153, 0, 0.15) 0%, rgba(255, 153, 0, 0.08) 100%);
+  color: var(--accent-orange);
+}
+
+.advantage-card__title {
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--main-dark);
+}
+
+.advantage-card__desc {
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+/* --------------------------------------------------------------------------
+   Форма заказа — тёмный фон + glassmorphism
+   -------------------------------------------------------------------------- */
+
+.order {
+  position: relative;
+  padding: clamp(64px, 8vw, 96px) 0;
+  background:
+    linear-gradient(rgba(30, 34, 41, 0.82), rgba(30, 34, 41, 0.82)),
+    url('images/fon1.webp') center center / cover no-repeat;
+}
+
+.order__inner {
+  position: relative;
+  z-index: 1;
+}
+
+.order-form__card {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: clamp(28px, 5vw, 36px);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(9px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 16px;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.order-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.order-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.order-form__field label {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--white);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+.order-form__field input,
+.order-form__field select {
+  width: 100%;
+  min-height: 52px;
+  padding: 14px 18px;
+  font-family: var(--font-family);
+  font-size: 1.0625rem;
+  color: var(--main-dark);
+  background: rgba(255, 255, 255, 0.93);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: var(--radius-btn);
+  appearance: none;
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition),
+    background-color var(--transition);
+}
+
+.order-form__field select {
+  padding-right: 44px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%231e2229' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 18px center;
+  cursor: pointer;
+}
+
+.order-form__field input::placeholder {
+  color: #9ca3af;
+}
+
+.order-form__field input:focus,
+.order-form__field select:focus {
+  outline: none;
+  border-color: var(--accent-orange);
+  background-color: var(--white);
+  box-shadow: 0 0 0 3px rgba(255, 153, 0, 0.3);
+}
+
+.order-form__submit {
+  width: 100%;
+  margin-top: 4px;
+}
+
+.order-form__input--error {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2) !important;
+}
+
+.order-form__error {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #fecaca;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.order-form__success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 16px 8px;
+  text-align: center;
+  animation: successFadeIn 0.5s ease;
+}
+
+.order-form__success-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--accent-orange);
+  color: var(--white);
+  font-size: 1.75rem;
+  font-weight: 700;
+  box-shadow: 0 4px 20px rgba(255, 153, 0, 0.4);
+}
+
+.order-form__success-text {
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--white);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+@keyframes successFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+
+.footer {
+  background-color: var(--main-dark);
+  color: var(--white);
+  padding: 36px 0;
+}
+
+.footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.footer__copyright {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.footer__phone {
+  font-weight: 600;
+  color: var(--white);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.footer__phone:hover {
+  color: var(--accent-orange);
+}
+
+.footer__policy {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color var(--transition);
+}
+
+.footer__policy:hover {
+  color: var(--white);
+}
+
+/* --------------------------------------------------------------------------
+   Адаптивность
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .services__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .advantages__grid {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    --header-height: 60px;
+  }
+
+  .header__inner {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    padding: 10px 0;
+    gap: 12px;
+  }
+
+  .header__contacts {
+    align-items: center;
+  }
+
+  .header__callback,
+  .service-card__btn,
+  .hero .btn {
+    width: 100%;
+  }
+
+  .services__grid,
+  .fleet__grid,
+  .advantages__grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .advantage-card {
+    padding: 24px;
+  }
+
+  .advantage-card__icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .advantage-card__icon svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .service-card__btn {
+    align-self: stretch;
+  }
+
+  .order {
+    background-attachment: scroll;
+  }
+
+  .order-form__card {
+    border-radius: 12px;
+  }
+
+  .footer__inner {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --header-height: 100px;
+  }
+
+  .section-title {
+    margin-bottom: 2rem;
+  }
+
+  .service-card__image,
+  .fleet-card__image {
+    height: 160px;
+  }
+}
